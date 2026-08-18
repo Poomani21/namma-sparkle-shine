@@ -408,7 +408,7 @@ const serviceMedia: Record<string, { image: string; alt: string }> = {
 
 export const services: Service[] = serviceDefs.map((def) => {
   const price = getPrice(def.priceId);
-  const media = serviceMedia[def.slug];
+  const media = serviceMedia[def.slug]!;
   return {
     ...def,
     fromPrice: price.price,
