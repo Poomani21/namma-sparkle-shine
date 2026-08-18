@@ -1,11 +1,38 @@
-export type Service = {
+import { getPrice } from "./pricing";
+
+import bagImg from "@/assets/services/bag-cleaning.jpg";
+import blanketImg from "@/assets/services/blankets.jpg";
+import carpetImg from "@/assets/services/carpets.jpg";
+import curtainImg from "@/assets/services/curtains.jpg";
+import dryCleaningImg from "@/assets/services/dry-cleaning.jpg";
+import linenImg from "@/assets/services/home-linen.jpg";
+import sareeImg from "@/assets/services/sarees.jpg";
+import shoeImg from "@/assets/services/shoe-cleaning.jpg";
+import ironImg from "@/assets/services/steam-ironing.jpg";
+import stainImg from "@/assets/services/stain-removal.jpg";
+import washFoldImg from "@/assets/services/wash-and-fold.jpg";
+import washIronImg from "@/assets/services/wash-and-iron.jpg";
+
+/**
+ * Service catalogue.
+ * Prices are NOT stored here — each service points at an id in
+ * src/data/pricing.ts, so a price is edited in exactly one place and stays
+ * identical on the home page, services pages, price list and estimator.
+ */
+export type Service = ServiceDef & {
+  fromPrice: number;
+  unit: string;
+  image: string;
+  imageAlt: string;
+};
+
+type ServiceDef = {
   slug: string;
   name: string;
   short: string;
   headline: string;
   intro: string;
-  fromPrice: number;
-  unit: string;
+  priceId: string;
   frequency: string;
   benefits: string[];
   process: string[];
@@ -13,7 +40,7 @@ export type Service = {
   category: "garment" | "home" | "everyday" | "specialist";
 };
 
-export const services: Service[] = [
+const serviceDefs: ServiceDef[] = [
   {
     slug: "dry-cleaning",
     name: "Dry Cleaning",
@@ -21,8 +48,7 @@ export const services: Service[] = [
     headline: "Professional Dry Cleaning That Protects Fabric and Colour",
     intro:
       "Delicate and structured garments lose shape in water. We dry clean with fresh, filtered solvent, spot-treat by hand and finish on a steam press so your clothes come back sharp, not shiny.",
-    fromPrice: 150,
-    unit: "per garment",
+    priceId: "m-shirt",
     frequency: "After 2–3 wears, or immediately after a stain or heavy sweat",
     benefits: [
       "Fresh solvent for every batch — no recycled dirty solvent",
@@ -55,8 +81,7 @@ export const services: Service[] = [
     headline: "Saree Cleaning With Complimentary Roll Polish",
     intro:
       "A saree is an investment. We clean silk, Kanjivaram, Banarasi, georgette and designer sarees by hand-checked process, then finish with roll polish so the fall and shine return — included, not charged extra.",
-    fromPrice: 300,
-    unit: "per saree",
+    priceId: "w-saree-cotton",
     frequency: "After every 1–2 wears; before storing for the season",
     benefits: [
       "Dry cleaning + roll polish at one price",
@@ -89,8 +114,7 @@ export const services: Service[] = [
     headline: "Blanket and Quilt Cleaning, Fully Dried and Dust-Free",
     intro:
       "Home washing rarely dries a blanket fully, and damp filling smells within days. We use large-drum machines and controlled drying so blankets come back light, fluffy and completely dry.",
-    fromPrice: 350,
-    unit: "per blanket",
+    priceId: "h-blanket-single",
     frequency: "Every 3–4 months, and before and after winter storage",
     benefits: [
       "Large-drum wash — filling is not compressed",
@@ -123,8 +147,7 @@ export const services: Service[] = [
     headline: "Curtain Cleaning Without Shrinkage or Colour Loss",
     intro:
       "Curtains hold more dust than any other item at home. We clean by fabric type — cotton, linen, blackout, sheer or velvet — and press so pleats fall correctly when rehung.",
-    fromPrice: 200,
-    unit: "per panel",
+    priceId: "h-curtain-light",
     frequency: "Every 6 months; every 3–4 months on main roads or with pets",
     benefits: [
       "Length and pleats preserved",
@@ -157,8 +180,7 @@ export const services: Service[] = [
     headline: "Carpet and Rug Deep Cleaning",
     intro:
       "Carpets trap dust, hair and moisture. We vacuum, shampoo and extract, then dry fully so there is no residue and no smell left behind.",
-    fromPrice: 25,
-    unit: "per sq. ft",
+    priceId: "h-carpet",
     frequency: "Every 6–12 months; every 4–6 months with pets or children",
     benefits: [
       "Deep extraction, not surface cleaning",
@@ -191,8 +213,7 @@ export const services: Service[] = [
     headline: "Home Linen Cleaning, Crisply Pressed",
     intro:
       "Bedsheets, towels and sofa covers used daily need proper hot-wash hygiene. We wash by household, never mixed with other homes, and return everything pressed and folded.",
-    fromPrice: 60,
-    unit: "per piece",
+    priceId: "h-bedsheet-single",
     frequency: "Bedsheets weekly, towels twice a week, sofa covers monthly",
     benefits: [
       "Separate wash per household",
@@ -225,8 +246,7 @@ export const services: Service[] = [
     headline: "Wash & Fold — Everyday Laundry, Done Properly",
     intro:
       "Your daily clothes washed with quality detergent, dried and folded. Priced per kilogram, picked up and delivered free.",
-    fromPrice: 79,
-    unit: "per kg",
+    priceId: "wash-fold",
     frequency: "Weekly or twice a week for most families",
     benefits: [
       "Free pickup and delivery",
@@ -254,8 +274,7 @@ export const services: Service[] = [
     headline: "Wash & Iron — Ready-to-Wear Every Week",
     intro:
       "Everything in wash & fold, plus a proper press. Shirts and trousers come back on hangers, ready for the week.",
-    fromPrice: 99,
-    unit: "per kg",
+    priceId: "wash-iron",
     frequency: "Weekly for working households",
     benefits: [
       "Shirts pressed and hung",
@@ -283,8 +302,7 @@ export const services: Service[] = [
     headline: "Steam Ironing, Priced Per Piece",
     intro:
       "Already washed at home? Send them for steam pressing. Professional steam irons give a flat, crisp finish that a home iron cannot match.",
-    fromPrice: 15,
-    unit: "per piece",
+    priceId: "iron-shirt",
     frequency: "As needed — most customers send weekly",
     benefits: [
       "Professional steam press",
@@ -312,8 +330,7 @@ export const services: Service[] = [
     headline: "Shoe Cleaning and Restoration",
     intro:
       "Sneakers, leather formals, suede and heels — cleaned by hand, deodorised, conditioned and finished. No machine tumbling.",
-    fromPrice: 299,
-    unit: "per pair",
+    priceId: "s-sneaker",
     frequency: "Every 2–3 months for regularly worn pairs",
     benefits: [
       "Hand cleaning, sole to laces",
@@ -335,8 +352,7 @@ export const services: Service[] = [
     headline: "Bag and Handbag Cleaning",
     intro:
       "Leather, fabric and designer bags cleaned by hand, with hardware protected and leather conditioned to prevent cracking.",
-    fromPrice: 399,
-    unit: "per bag",
+    priceId: "s-bag",
     frequency: "Every 4–6 months for daily-use bags",
     benefits: [
       "Interior and exterior cleaning",
@@ -358,8 +374,7 @@ export const services: Service[] = [
     headline: "Specialised Stain Removal",
     intro:
       "Oil, turmeric, ink, wine, blood, sweat marks and old yellowing — treated by stain type and fabric, by hand, before any wash cycle.",
-    fromPrice: 100,
-    unit: "add-on per stain",
+    priceId: "s-stain",
     frequency: "As soon as possible — fresh stains lift far better",
     benefits: [
       "Treatment chosen by stain type",
@@ -375,6 +390,33 @@ export const services: Service[] = [
     category: "specialist",
   },
 ];
+
+const serviceMedia: Record<string, { image: string; alt: string }> = {
+  "dry-cleaning": { image: dryCleaningImg, alt: "Crisp dry-cleaned white shirt on a hanger" },
+  sarees: { image: sareeImg, alt: "Silk saree with a gold zari border after cleaning and roll polish" },
+  blankets: { image: blanketImg, alt: "Freshly washed blankets folded in a neat stack" },
+  curtains: { image: curtainImg, alt: "Cleaned pleated curtains hanging at a bright window" },
+  carpets: { image: carpetImg, alt: "Patterned rug being deep cleaned" },
+  "home-linen": { image: linenImg, alt: "Folded white bedsheets, pillow covers and towels" },
+  "wash-and-fold": { image: washFoldImg, alt: "Everyday clothes washed and neatly folded in a basket" },
+  "wash-and-iron": { image: washIronImg, alt: "Pressed shirts and trousers hanging on a rail" },
+  "steam-ironing": { image: ironImg, alt: "Cotton shirt being finished on a professional steam press" },
+  "shoe-cleaning": { image: shoeImg, alt: "Cleaned white sneakers beside a polished leather shoe" },
+  "bag-cleaning": { image: bagImg, alt: "Cleaned leather handbag and canvas backpack" },
+  "stain-removal": { image: stainImg, alt: "Stain being treated by hand on white fabric" },
+};
+
+export const services: Service[] = serviceDefs.map((def) => {
+  const price = getPrice(def.priceId);
+  const media = serviceMedia[def.slug];
+  return {
+    ...def,
+    fromPrice: price.price,
+    unit: price.unit,
+    image: media.image,
+    imageAlt: media.alt,
+  };
+});
 
 export const serviceGroups: { title: string; category: Service["category"]; note: string }[] = [
   { title: "Everyday Laundry", category: "everyday", note: "Weekly clothes, priced per kg or per piece" },
