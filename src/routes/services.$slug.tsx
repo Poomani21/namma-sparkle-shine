@@ -85,6 +85,18 @@ function ServiceDetail() {
         </Button>
       </PageHeader>
 
+      <div className="mx-auto max-w-6xl px-4 pt-10 lg:px-6">
+        <div className="media-frame">
+          <img
+            src={s.image}
+            alt={s.imageAlt}
+            width={1024}
+            height={768}
+            className="aspect-[16/7] w-full object-cover"
+          />
+        </div>
+      </div>
+
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:px-6">
         <div className="min-w-0">
           <section>

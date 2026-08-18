@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 
 import { CtaSection } from "@/components/site/CtaBar";
+import { ServiceCard } from "@/components/site/ServiceCard";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Button } from "@/components/ui/button";
 import { serviceGroups, services } from "@/data/services";
@@ -54,22 +54,7 @@ function ServicesPage() {
               {services
                 .filter((s) => s.category === group.category)
                 .map((s) => (
-                  <Link
-                    key={s.slug}
-                    to="/services/$slug"
-                    params={{ slug: s.slug }}
-                    className="card-elegant flex flex-col p-6 transition-shadow hover:shadow-lg"
-                  >
-                    <h3 className="font-display text-xl text-primary">{s.name}</h3>
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.short}</p>
-                    <p className="mt-4 text-sm font-medium text-primary">
-                      From ₹{s.fromPrice}{" "}
-                      <span className="font-normal text-muted-foreground">{s.unit}</span>
-                    </p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-sm text-primary">
-                      Learn more <ArrowRight className="size-4" />
-                    </span>
-                  </Link>
+                  <ServiceCard key={s.slug} service={s} />
                 ))}
             </div>
           </section>
