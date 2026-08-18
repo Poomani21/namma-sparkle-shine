@@ -1,5 +1,7 @@
 /**
- * Pricing catalogue.
+ * Pricing catalogue — the single source of truth for every price on the site.
+ * Change a price here and it updates on the home page, service pages, the
+ * price list and the estimator at the same time.
  * Shape is intentionally flat and id-based so it can later be served from an
  * admin-managed backend table (id, group, name, price, unit) without changing
  * any UI code.
@@ -79,11 +81,17 @@ export const priceList: PriceItem[] = [
   { id: "s-sneaker", name: "Sneaker cleaning", price: 299, unit: "per pair", group: "Specialist Care" },
   { id: "s-leather-shoe", name: "Leather shoe clean & polish", price: 399, unit: "per pair", group: "Specialist Care" },
   { id: "s-bag", name: "Handbag / Backpack cleaning", price: 399, unit: "per bag", group: "Specialist Care" },
-  { id: "s-stain", name: "Specialised stain removal", price: 100, unit: "add-on", group: "Specialist Care" },
+  { id: "s-stain", name: "Specialised stain removal", price: 100, unit: "add-on per stain", group: "Specialist Care" },
 ];
 
+export function getPrice(id: string): PriceItem {
+  const item = priceList.find((p) => p.id === id);
+  if (!item) throw new Error(`Unknown price id: ${id}`);
+  return item;
+}
+
 export const pricingNotes = [
-  "Prices are starting prices and exclusive of GST.",
+  "All prices are starting prices and exclusive of GST.",
   "Every saree given for dry cleaning includes roll polish at no extra cost.",
   "Free pickup and delivery on orders above ₹300.",
   "Final price is confirmed after fabric inspection at pickup.",
