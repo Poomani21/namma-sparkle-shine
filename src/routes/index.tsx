@@ -11,9 +11,11 @@ import {
   Truck,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero.jpg";
+import heroImg from "@/assets/hero-shop.jpg";
 import homeCareImg from "@/assets/home-care.jpg";
+import pickupImg from "@/assets/pickup.jpg";
 import { CtaSection } from "@/components/site/CtaBar";
+import { ServiceCard } from "@/components/site/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { articles } from "@/data/knowledge";
 import { reviews, reviewStats } from "@/data/reviews";
@@ -94,8 +96,10 @@ function Index() {
           <div className="min-w-0">
             <img
               src={heroImg}
-              alt="Freshly pressed garments on hangers at Namma Laundry"
-              className="w-full rounded-2xl object-cover shadow-2xl"
+              alt="Inside the Namma Laundry unit — pressed garments, folded linen and washing machines"
+              width={1280}
+              height={960}
+              className="aspect-[5/4] w-full rounded-2xl object-cover shadow-2xl"
             />
           </div>
         </div>
@@ -113,7 +117,56 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-14 lg:px-6">
+      <section className="surface-cream">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-2 lg:px-6">
+          <div className="media-frame">
+            <img
+              src={pickupImg}
+              alt="Namma Laundry delivering a bundle of freshly cleaned clothes to a customer"
+              loading="lazy"
+              width={1024}
+              height={768}
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div className="min-w-0">
+            <h2 className="font-display text-3xl">How it works</h2>
+            <div className="rule-gold mt-3" />
+            <ol className="mt-6 space-y-5">
+              {[
+                {
+                  t: "Tell us what needs cleaning",
+                  d: "Call or WhatsApp us. We fix a pickup slot that suits you — same day in most areas.",
+                },
+                {
+                  t: "We collect and inspect",
+                  d: "Every item is counted, tagged and checked for stains. You get the price before we begin.",
+                },
+                {
+                  t: "Cleaned by fabric type",
+                  d: "Wash, dry clean or hand care — chosen for the fabric, then finished on a steam press.",
+                },
+                {
+                  t: "Delivered back to your door",
+                  d: "Packed, on hangers where needed, and delivered in 48–72 hours. Express available.",
+                },
+              ].map((step, i) => (
+                <li key={step.t} className="flex gap-4">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
+                    {i + 1}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-medium">{step.t}</span>
+                    <span className="mt-1 block text-sm text-muted-foreground">{step.d}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div className="min-w-0">
             <h2 className="font-display text-3xl">What we clean</h2>
@@ -126,19 +179,7 @@ function Index() {
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((s) => (
-            <Link
-              key={s.slug}
-              to="/services/$slug"
-              params={{ slug: s.slug }}
-              className="card-elegant flex flex-col p-6 transition-shadow hover:shadow-lg"
-            >
-              <h3 className="font-display text-xl text-primary">{s.name}</h3>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.short}</p>
-              <p className="mt-4 text-sm">
-                From <span className="font-display text-lg">₹{s.fromPrice}</span>{" "}
-                <span className="text-muted-foreground">{s.unit}</span>
-              </p>
-            </Link>
+            <ServiceCard key={s.slug} service={s} />
           ))}
         </div>
       </section>
