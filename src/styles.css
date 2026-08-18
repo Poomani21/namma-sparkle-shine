@@ -19,7 +19,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-display: "Marcellus", "Georgia", serif;
+  --font-display: "Fraunces", "Georgia", serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
@@ -129,10 +129,28 @@
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5,
+  h6,
+  .font-display {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  h1 {
+    line-height: 1.08;
+  }
+
+  h2,
+  h3 {
+    line-height: 1.2;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
   }
 }
 
@@ -153,6 +171,17 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
+}
+
+@utility surface-cream {
+  background-color: var(--cream);
+}
+
+@utility media-frame {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-muted);
 }
 
 @utility rule-gold {
