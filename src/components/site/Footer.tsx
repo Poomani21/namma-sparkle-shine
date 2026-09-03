@@ -48,6 +48,7 @@ export function Footer() {
             <li><Link to="/knowledge" className="hover:text-gold">Knowledge Centre</Link></li>
             <li><Link to="/reviews" className="hover:text-gold">Customer Reviews</Link></li>
             <li><Link to="/contact" className="hover:text-gold">Contact & Booking</Link></li>
+            <li><Link to="/terms-conditions" className="hover:text-gold">Terms & Conditions</Link></li>
           </ul>
         </div>
 
