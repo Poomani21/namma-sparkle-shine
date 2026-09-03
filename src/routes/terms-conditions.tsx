@@ -52,6 +52,7 @@ export const Route = createFileRoute("/terms-conditions")({
 type Section = {
   id: string;
   heading: string;
+  icon: LucideIcon;
   intro?: string;
   bullets?: string[];
   ordered?: string[];
