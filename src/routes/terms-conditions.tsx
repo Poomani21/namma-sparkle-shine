@@ -413,7 +413,7 @@ function TermsPage() {
             {/* Logo Added Above Navigation */}
             <div className="mb-4 flex justify-center border-b border-slate-100 pb-3">
               <img
-                src="/namma-laundry-logo.png"
+                src="/favicon.png"
                 alt="Namma Laundry Logo"
                 className="size-12 rounded-full object-cover shadow-sm"
               />
@@ -459,7 +459,7 @@ function TermsPage() {
                     <div className="absolute -top-10 left-1/2 -translate-x-1/2">
                       <div className="flex size-20 items-center justify-center rounded-full border-2 border-amber-400 bg-[#0c402b] p-1 shadow-md">
                         <img
-                          src="/namma-laundry-logo.png"
+                          src="/favicon.png"
                           alt="Namma Laundry Logo"
                           className="size-full rounded-full object-contain"
                         />
@@ -563,7 +563,7 @@ function TermsPage() {
                     <div className="absolute -top-10 left-1/2 -translate-x-1/2">
                       <div className="flex size-20 items-center justify-center rounded-full border-2 border-amber-400 bg-[#0c402b] p-1 shadow-md">
                         <img
-                          src="/namma-laundry-logo.png"
+                          src="/favicon.png"
                           alt="Namma Laundry Logo"
                           className="size-full rounded-full object-contain"
                         />
