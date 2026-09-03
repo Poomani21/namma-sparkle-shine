@@ -64,7 +64,8 @@ type Section = {
 const sections: Section[] = [
   {
     id: "order-acceptance",
-    heading: "Order Acceptance",
+    heading:
+    icon: ClipboardList, "Order Acceptance",
     bullets: [
       "Garments are accepted after visual inspection at the counter.",
       "Customers must verify and confirm: garment count, service requested, special instructions (if any).",
@@ -74,7 +75,8 @@ const sections: Section[] = [
   },
   {
     id: "processing-methods",
-    heading: "Processing Methods",
+    heading:
+    icon: WashingMachine, "Processing Methods",
     bullets: [
       "Garments are accepted after visual inspection at the counter.",
       "Customers must verify and confirm: garment count, service requested, special instructions (if any).",
@@ -84,7 +86,8 @@ const sections: Section[] = [
   },
   {
     id: "service-timelines",
-    heading: "Service Timelines",
+    heading:
+    icon: Clock, "Service Timelines",
     table: {
       head: ["Service", "Estimated Timeline"],
       rows: [
@@ -102,7 +105,8 @@ const sections: Section[] = [
   },
   {
     id: "claim-reporting",
-    heading: "Claim Reporting Timeline",
+    heading:
+    icon: Timer, "Claim Reporting Timeline",
     intro:
       "All complaints or claims must be reported within 48 hours of garment collection. Conditions for claim acceptance:",
     bullets: [
@@ -113,7 +117,8 @@ const sections: Section[] = [
   },
   {
     id: "limitation-of-liability",
-    heading: "Limitation of Liability",
+    heading:
+    icon: HandCoins, "Limitation of Liability",
     intro:
       "In the unlikely event of loss, damage, discoloration, shrinkage, or other garment-related issues, the maximum liability of the laundry shall be limited to:",
     bullets: [
@@ -127,7 +132,8 @@ const sections: Section[] = [
   },
   {
     id: "garment-loss",
-    heading: "Garment Loss Policy",
+    heading:
+    icon: ShoppingBag, "Garment Loss Policy",
     subs: [
       {
         heading: "Complete Garment Loss",
@@ -146,7 +152,8 @@ const sections: Section[] = [
   },
   {
     id: "damage-discoloration",
-    heading: "Damage or Discoloration Policy",
+    heading:
+    icon: Shirt, "Damage or Discoloration Policy",
     intro: "If discoloration, shrinkage, or fabric damage occurs during processing:",
     ordered: [
       "One attempt will be made to restore or reprocess the garment.",
@@ -155,7 +162,8 @@ const sections: Section[] = [
   },
   {
     id: "colour-bleeding",
-    heading: "Colour Bleeding Disclaimer",
+    heading:
+    icon: Palette, "Colour Bleeding Disclaimer",
     outro: [
       "Certain fabrics may release dye during cleaning due to unstable dyes, fabric composition, or manufacturing processes.",
       "Colour bleeding may occur even when garments are processed according to recommended methods, including dry cleaning solvents or water-based cleaning systems.",
@@ -164,14 +172,16 @@ const sections: Section[] = [
   },
   {
     id: "shrinkage",
-    heading: "Shrinkage Disclaimer",
+    heading:
+    icon: Ruler, "Shrinkage Disclaimer",
     intro:
       "Natural fibers such as cotton, linen, silk, and wool may shrink during cleaning despite careful handling. The laundry shall not be liable for shrinkage resulting from:",
     bullets: ["fabric composition", "manufacturer treatment", "prior usage or ageing of the garment."],
   },
   {
     id: "unsatisfactory-service",
-    heading: "Unsatisfactory Service",
+    heading:
+    icon: ThumbsUp, "Unsatisfactory Service",
     intro: "If a customer is not satisfied with the finishing quality of the service:",
     ordered: [
       "The laundry will provide one complimentary reprocessing (re-wash, re-iron, or finishing correction).",
@@ -185,7 +195,8 @@ const sections: Section[] = [
   },
   {
     id: "stain-removal",
-    heading: "Stain Removal Policy",
+    heading:
+    icon: Sparkles, "Stain Removal Policy",
     bullets: [
       "Stain removal is undertaken on a best-effort basis and is not guaranteed 100%, as results depend on factors such as fabric type, stain type, and stain age.",
       "Our team uses industry-appropriate methods to treat stains while ensuring no damage to the fabric due to over-processing.",
@@ -198,7 +209,8 @@ const sections: Section[] = [
   },
   {
     id: "high-value-garments",
-    heading: "High Value Garment Policy",
+    heading:
+    icon: Gem, "High Value Garment Policy",
     intro:
       "For garments valued above ₹10,000, customers must declare the value at the time of submission. A handling charge of 2% of declared value may be applied for special care and inspection. Maximum compensation for high-value garments shall be limited to:",
     bullets: ["20% of declared value, OR", "₹5,000, whichever is lower."],
@@ -208,7 +220,8 @@ const sections: Section[] = [
   },
   {
     id: "depreciation",
-    heading: "Depreciation Policy",
+    heading:
+    icon: HandCoins, "Depreciation Policy",
     intro:
       "Garment value decreases with usage and age. For compensation calculation, the following depreciation guidelines may be considered:",
     table: {
@@ -224,7 +237,8 @@ const sections: Section[] = [
   },
   {
     id: "claim-documentation",
-    heading: "Documentation for Claims",
+    heading:
+    icon: FileText, "Documentation for Claims",
     intro: "For any compensation claim, customers may be required to provide:",
     bullets: [
       "approximate purchase value",
@@ -237,7 +251,8 @@ const sections: Section[] = [
   },
   {
     id: "pre-existing-conditions",
-    heading: "Pre-Existing Conditions",
+    heading:
+    icon: AlertTriangle, "Pre-Existing Conditions",
     intro: "The laundry is not responsible for issues arising from:",
     bullets: [
       "weak fabric",
@@ -250,7 +265,8 @@ const sections: Section[] = [
   },
   {
     id: "accessories",
-    heading: "Accessories and Embellishments",
+    heading:
+    icon: Gem, "Accessories and Embellishments",
     intro: "The laundry is not responsible for damage to:",
     bullets: [
       "beads",
@@ -267,7 +283,8 @@ const sections: Section[] = [
   },
   {
     id: "uncollected-garments",
-    heading: "Uncollected Garments",
+    heading:
+    icon: Archive, "Uncollected Garments",
     outro: [
       "Garments not collected within 30 days may be moved to storage.",
       "Garments unclaimed for 90 days may be disposed of or donated at the discretion of management.",
@@ -275,7 +292,8 @@ const sections: Section[] = [
   },
   {
     id: "pickup-delivery",
-    heading: "Pickup & Delivery Policy",
+    heading:
+    icon: Truck, "Pickup & Delivery Policy",
     bullets: [
       "Minimum order for pickup & delivery: ₹300",
       "Free pickup & delivery above ₹500",
@@ -286,7 +304,8 @@ const sections: Section[] = [
   },
   {
     id: "home-delivery",
-    heading: "Home Pickup & Delivery Policy",
+    heading:
+    icon: Truck, "Home Pickup & Delivery Policy",
     intro:
       "To serve you better and manage routes efficiently, we follow the below delivery policy:",
     bullets: [
@@ -299,7 +318,8 @@ const sections: Section[] = [
   },
   {
     id: "extended-service-area",
-    heading: "Extended Service Area Pickup & Delivery Requests",
+    heading:
+    icon: MapPin, "Extended Service Area Pickup & Delivery Requests",
     intro:
       "For customers located beyond 5 km and up to 10 km from our store, the following conditions apply:",
     subs: [
@@ -324,7 +344,8 @@ const sections: Section[] = [
   },
   {
     id: "acceptance-of-terms",
-    heading: "Acceptance of Terms",
+    heading:
+    icon: BadgeCheck, "Acceptance of Terms",
     intro: "Submitting garments for service implies that the customer:",
     bullets: [
       "has read and understood the terms",
