@@ -1,5 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AlertTriangle, Phone } from "lucide-react";
+import {
+  AlertTriangle,
+  Check,
+  ClipboardList,
+  Clock,
+  Droplets,
+  FileText,
+  Gem,
+  HandCoins,
+  MapPin,
+  Palette,
+  Phone,
+  Ruler,
+  Shirt,
+  ShoppingBag,
+  Sparkles,
+  ThumbsUp,
+  Timer,
+  Truck,
+  WashingMachine,
+  Archive,
+  BadgeCheck,
+  type LucideIcon,
+} from "lucide-react";
 
 import { CtaSection } from "@/components/site/CtaBar";
 import { PageHeader } from "@/components/site/PageHeader";
