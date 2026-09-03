@@ -28,13 +28,9 @@ export const Route = createFileRoute("/services/")({
       {
         name: "description",
         content:
-          "Dry cleaning, saree care, blankets, curtains, carpets, wash & fold, ironing and specialist cleaning in Bengaluru. Free pickup and delivery.",
+          "Wash & Fold, Wash & Iron, Dry Cleaning, Saree Care, Curtains, and Blankets cleaning in Bengaluru with free pickup and delivery.",
       },
       { property: "og:title", content: "Our Services | Namma Laundry" },
-      {
-        property: "og:description",
-        content: "Every fabric care service we offer, with starting prices and turnaround.",
-      },
       { property: "og:url", content: "/services" },
     ],
     links: [{ rel: "canonical", href: "/services" }],
@@ -54,6 +50,29 @@ const processSteps = [
   { step: "9", title: "Follow-up & Feedback", icon: UserCheck },
 ];
 
+const mainOfferings = [
+  {
+    title: "Wash & Fold",
+    desc: "Everyday wear washed with eco-friendly detergents, tumble-dried, and neatly folded.",
+    badge: "Core Service",
+  },
+  {
+    title: "Wash & Iron",
+    desc: "Washed, dried, steam-pressed, and neatly packaged on hangers or folded.",
+    badge: "Most Popular",
+  },
+  {
+    title: "Steam Ironing",
+    desc: "Crisp, wrinkle-free finishing using commercial-grade steam presses.",
+    badge: "Quick Care",
+  },
+  {
+    title: "Premium Dry Cleaning",
+    desc: "Gentle solvent care for silk sarees, suits, lehengas, and delicate fabrics.",
+    badge: "Specialist",
+  },
+];
+
 const expressOfferings = [
   { title: "Steam Iron", time: "Immediate" },
   { title: "Wash & Fold", time: "4 Hours" },
@@ -64,49 +83,77 @@ function ServicesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Our services"
-        title="Complete fabric care, under one roof"
-        subtitle={`From weekly laundry to Kanjivaram sarees and living-room carpets — handled by a team with ${site.yearsExperience}+ years in ${site.city}.`}
+        eyebrow="Our Services"
+        title="Complete Fabric Care, Under One Roof"
+        subtitle={`From daily Wash & Fold to Kanjivaram silk sarees and living-room curtains — handled by our experienced team in ${site.city}.`}
       >
         <Button asChild size="lg" variant="gold">
-          <Link to="/estimate">Get an online estimate</Link>
+          <Link to="/estimate">Get an Online Estimate</Link>
         </Button>
         <Button asChild size="lg" variant="outlineLight">
-          <Link to="/pricing">View price list</Link>
+          <Link to="/pricing">View Price List</Link>
         </Button>
       </PageHeader>
 
-      <div className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
-        {/* ==========================================
-            EXPRESS SERVICE BANNER (INCREASED TEXT SIZE)
-           ========================================== */}
-        <section className="card-elegant relative overflow-hidden border-primary/30 bg-gradient-to-r from-primary/10 via-background to-amber-500/10 p-6 lg:p-8 mb-12 shadow-md">
+      <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
+        {/* Core Services Section */}
+        <section className="mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+              Our Primary Offerings
+            </span>
+            <h2 className="font-display text-3xl font-bold mt-1">Everyday Laundry Solutions</h2>
+            <div className="rule-gold mx-auto mt-2" />
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {mainOfferings.map((item) => (
+              <div key={item.title} className="card-elegant p-6 flex flex-col justify-between border-primary/20">
+                <div>
+                  <span className="inline-block bg-primary/10 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full mb-3">
+                    {item.badge}
+                  </span>
+                  <h3 className="font-display text-xl font-bold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+                <Button asChild variant="outline" size="sm" className="mt-6 w-full">
+                  <a href={waLink(`Hi Namma Laundry, I want to book ${item.title}.`)}>
+                    Book {item.title}
+                  </a>
+                </Button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Express Service Banner */}
+        <section className="card-elegant relative overflow-hidden border-primary/30 bg-gradient-to-r from-primary/10 via-background to-amber-500/10 p-6 lg:p-8 mb-14 shadow-md">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="max-w-xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3.5 py-1 text-sm font-semibold text-primary mb-3">
                 <Zap className="size-4 fill-primary" />
                 <span>NEED IT FAST? CHOOSE EXPRESS</span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold">Priority Care On Demand</h2>
+              <h2 className="font-display text-3xl font-bold">Priority Care On Demand</h2>
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-                When time is tight, our Express Service bumps your garments to the top of our queue for rapid turnaround.
+                When time is short, our Express Service prioritizes your garments for quick turnaround.
               </p>
 
-              {/* Express Pricing & Terms */}
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground bg-primary/10 px-3 py-1 rounded-md text-sm sm:text-base">
+                <span className="font-semibold text-foreground bg-primary/10 px-3 py-1 rounded-md text-sm">
                   Pricing: Billed at 2X regular rate (e.g., ₹14 ironing → ₹28)
                 </span>
               </div>
+
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-primary shrink-0" /> Priority processing
                 </li>
                 <li className="flex items-center gap-2">
-                  <AlertCircle className="size-4 text-amber-600 shrink-0" /> Limited capacity
+                  <AlertCircle className="size-4 text-amber-600 shrink-0" /> Limited daily capacity
                 </li>
                 <li className="flex items-center gap-2">
-                  <AlertCircle className="size-4 text-amber-600 shrink-0" /> Not for bulk orders
+                  <AlertCircle className="size-4 text-amber-600 shrink-0" /> Not applicable for bulk orders
                 </li>
                 <li className="flex items-center gap-2">
                   <AlertCircle className="size-4 text-amber-600 shrink-0" /> Subject to power availability
@@ -114,7 +161,6 @@ function ServicesPage() {
               </ul>
             </div>
 
-            {/* Express Turnarounds Card */}
             <div className="flex flex-col sm:flex-row lg:flex-col gap-4 shrink-0">
               <div className="grid grid-cols-3 gap-3 bg-background/80 backdrop-blur border border-border p-4 rounded-xl">
                 {expressOfferings.map((item) => (
@@ -137,9 +183,7 @@ function ServicesPage() {
           </div>
         </section>
 
-        {/* ==========================================
-            SERVICES GROUPS GRID
-           ========================================== */}
+        {/* Detailed Service Category Groups */}
         {serviceGroups.map((group) => (
           <section key={group.category} className="mb-14 last:mb-0">
             <h2 className="font-display text-2xl sm:text-3xl">{group.title}</h2>
@@ -156,9 +200,7 @@ function ServicesPage() {
         ))}
       </div>
 
-      {/* ==========================================
-          9-STEP PROCESS FLOW SECTION
-         ========================================== */}
+      {/* 9-Step Process Flow Section */}
       <section className="border-t border-border bg-secondary/30 py-16">
         <div className="mx-auto max-w-6xl px-4 lg:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -168,7 +210,7 @@ function ServicesPage() {
             <h2 className="font-display text-3xl sm:text-4xl mt-1">Our 9-Step Cleaning Process</h2>
             <div className="rule-gold mx-auto mt-3" />
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-              We treat every garment with personalized attention. From the moment we collect your items to final delivery, here is how we ensure uncompromising quality.
+              We treat every garment with personalized care. Here is how we ensure consistent quality from pickup to final delivery.
             </p>
           </div>
 

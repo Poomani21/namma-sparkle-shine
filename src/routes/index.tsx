@@ -1,21 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+  AlertCircle,
   Calculator,
   Check,
+  CheckCircle2,
   Clock,
   HeartHandshake,
   Leaf,
   MessageCircle,
+  Package,
   Phone,
+  RefreshCw,
+  Search,
   ShieldCheck,
+  Shirt,
   Sparkles,
   Star,
   Truck,
+  UserCheck,
+  Zap,
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-shop.jpg";
 import homeCareImg from "@/assets/home-care.jpg";
-import pickupImg from "@/assets/pickup.jpg";
 import { CtaSection } from "@/components/site/CtaBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { Button } from "@/components/ui/button";
@@ -30,7 +37,7 @@ export const Route = createFileRoute("/")({
       { title: `Dry Cleaning & Laundry in ${site.city} | ${site.name}` },
       {
         name: "description",
-        content: `Free pickup and delivery laundry, dry cleaning, saree care with roll polish, blanket and curtain cleaning in ${site.city}. ${site.yearsExperience}+ years, ${reviewStats.average}★ from ${reviewStats.count}+ customers.`,
+        content: `Free pickup and delivery laundry, wash & fold, wash & iron, saree care with roll polish, blanket and curtain cleaning in ${site.city}. ${site.yearsExperience}+ years, ${reviewStats.average}★ from ${reviewStats.count}+ customers.`,
       },
       { property: "og:title", content: `${site.name} — Dry Cleaning & Laundry in ${site.city}` },
       {
@@ -51,11 +58,23 @@ const promises = [
   { icon: Clock, title: "On-time, every time", body: "48–72 hour standard delivery, express available before 10 AM." },
 ];
 
+const processSteps = [
+  { step: "1", title: "Pickup Scheduling", icon: Truck, desc: "Schedule convenient pickup times via call or WhatsApp." },
+  { step: "2", title: "Cloth Collection", icon: Package, desc: "Our driver collects your clothes right from your doorstep." },
+  { step: "3", title: "Sorting & Inspection", icon: Search, desc: "Detailed inspection for fabric type, stains, and repairs." },
+  { step: "4", title: "Washing / Dry cleaning", icon: Shirt, desc: "Custom wash or solvent cleaning tailored to fabric requirements." },
+  { step: "5", title: "Drying / Ironing", icon: RefreshCw, desc: "Controlled drying and crisp steam ironing finishing." },
+  { step: "6", title: "Quality Check", icon: ShieldCheck, desc: "Strict quality check to ensure every stain and crease is addressed." },
+  { step: "7", title: "Packaging", icon: Sparkles, desc: "Hygienic eco-packaging on hangers or folded neatly." },
+  { step: "8", title: "Delivery", icon: Truck, desc: "Prompt doorstep delivery back to you on schedule." },
+  { step: "9", title: "Follow-up & Feedback", icon: UserCheck, desc: "We confirm satisfaction to guarantee hassle-free service." },
+];
+
 const whyChooseUsHighlights = [
   {
     icon: ShieldCheck,
     title: "Experienced & Reliable",
-    body: "Years of hands-on expertise and fabric knowledge you can count on.",
+    body: "Years of hands-on expertise and fabric knowledge you can trust.",
   },
   {
     icon: Sparkles,
@@ -92,7 +111,7 @@ function Index() {
               <span className="text-gradient-gold">cared for like our own</span>
             </h1>
             <p className="mt-5 max-w-xl text-sm opacity-85 sm:text-base">
-              Dry cleaning, saree care with complimentary roll polish, blankets, curtains and
+              Wash & Fold, Wash & Iron, Dry Cleaning, saree care with complimentary roll polish, blankets, curtains, and
               everyday laundry — collected from your door and returned finished, on time.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -142,51 +161,45 @@ function Index() {
         </div>
       </section>
 
-      <section className="surface-cream">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-2 lg:px-6">
-          <div className="media-frame">
-            <img
-              src={pickupImg}
-              alt="Namma Laundry delivering a bundle of freshly cleaned clothes to a customer"
-              loading="lazy"
-              width={1024}
-              height={768}
-              className="aspect-[4/3] w-full object-cover"
-            />
+      {/* ==========================================
+          OUR PROCESS SECTION (9-STEP SHEET)
+         ========================================== */}
+      <section className="surface-cream py-16">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+              Care at Every Step
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl mt-1">Our Process</h2>
+            <div className="rule-gold mx-auto mt-3" />
+            <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              We treat every garment with personalized attention. From scheduling to doorstep delivery, here is our 9-step quality assurance workflow.
+            </p>
           </div>
-          <div className="min-w-0">
-            <h2 className="font-display text-3xl">How it works</h2>
-            <div className="rule-gold mt-3" />
-            <ol className="mt-6 space-y-5">
-              {[
-                {
-                  t: "Tell us what needs cleaning",
-                  d: "Call or WhatsApp us. We fix a pickup slot that suits you — same day in most areas.",
-                },
-                {
-                  t: "We collect and inspect",
-                  d: "Every item is counted, tagged and checked for stains. You get the price before we begin.",
-                },
-                {
-                  t: "Cleaned by fabric type",
-                  d: "Wash, dry clean or hand care — chosen for the fabric, then finished on a steam press.",
-                },
-                {
-                  t: "Delivered back to your door",
-                  d: "Packed, on hangers where needed, and delivered in 48–72 hours. Express available.",
-                },
-              ].map((step, i) => (
-                <li key={step.t} className="flex gap-4">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
-                    {i + 1}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block font-medium">{step.t}</span>
-                    <span className="mt-1 block text-sm text-muted-foreground">{step.d}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
+
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {processSteps.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.step}
+                  className="card-elegant p-5 flex flex-col justify-between hover:border-primary/50 transition-colors bg-background/80"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="size-9 rounded-full bg-primary/10 text-primary font-display font-bold flex items-center justify-center text-sm shrink-0">
+                      {item.step}
+                    </div>
+                    <Icon className="size-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-base text-foreground">{item.title}</h3>
+                    <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
