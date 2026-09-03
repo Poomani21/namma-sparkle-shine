@@ -15,6 +15,7 @@ const nav = [
   { to: "/about", label: "About" },
   { to: "/reviews", label: "Reviews" },
   { to: "/contact", label: "Contact" },
+  { to: "/terms-conditions", label: "Terms & Conditions" },
 ] as const;
 
 export function Header() {
