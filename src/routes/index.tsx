@@ -3,6 +3,8 @@ import {
   Calculator,
   Check,
   Clock,
+  HeartHandshake,
+  Leaf,
   MessageCircle,
   Phone,
   ShieldCheck,
@@ -47,6 +49,29 @@ const promises = [
   { icon: ShieldCheck, title: "Price before cleaning", body: "Items are inspected and quoted upfront. No surprises at delivery." },
   { icon: Sparkles, title: "Roll polish included", body: "Every silk and Kanjivaram saree gets roll polish at no extra charge." },
   { icon: Clock, title: "On-time, every time", body: "48–72 hour standard delivery, express available before 10 AM." },
+];
+
+const whyChooseUsHighlights = [
+  {
+    icon: ShieldCheck,
+    title: "Experienced & Reliable",
+    body: "Years of hands-on expertise and fabric knowledge you can count on.",
+  },
+  {
+    icon: Sparkles,
+    title: "Uncompromising Quality",
+    body: "Every garment gets individual care, inspection, and the treatment it deserves.",
+  },
+  {
+    icon: Leaf,
+    title: "Eco-Friendly Approach",
+    body: "Gentle cleaning processes engineered for clean clothes and a cleaner planet.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Ethical & Transparent",
+    body: "Honest pricing with zero hidden surprises—confirmed before we start.",
+  },
 ];
 
 function Index() {
@@ -162,6 +187,48 @@ function Index() {
                 </li>
               ))}
             </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          MISSION & WHY CHOOSE US SUMMARY SECTION
+         ========================================== */}
+      <section className="border-y border-border bg-background py-16">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            {/* Mission Statement */}
+            <div className="lg:col-span-5">
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                Our Driven Purpose
+              </span>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl">Driven by Purpose, Dedicated to Care</h2>
+              <div className="rule-gold mt-3" />
+              <blockquote className="mt-6 rounded-2xl border border-primary/15 bg-primary/5 p-6 font-serif text-base italic text-foreground/90 leading-relaxed">
+                "To deliver high-quality, eco-conscious, and ethically driven laundry solutions that uphold community welfare—ensuring every service reflects our dedication to both people and the planet."
+              </blockquote>
+              <div className="mt-6">
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/about">Learn more about our vision & process</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Why Choose Us Pillars Grid */}
+            <div className="lg:col-span-7">
+              <h3 className="font-display text-2xl mb-2">Why Choose Us</h3>
+              <p className="text-sm text-muted-foreground mb-6">Built on trust, quality, and complete transparency.</p>
+              
+              <div className="grid gap-4 sm:grid-cols-2">
+                {whyChooseUsHighlights.map((item) => (
+                  <div key={item.title} className="card-elegant p-5">
+                    <item.icon className="size-5 text-primary" />
+                    <h4 className="mt-3 font-display font-semibold text-base">{item.title}</h4>
+                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
