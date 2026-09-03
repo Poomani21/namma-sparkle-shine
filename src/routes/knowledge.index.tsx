@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Clock } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Sparkles } from "lucide-react";
 
 import { CtaSection } from "@/components/site/CtaBar";
 import { PageHeader } from "@/components/site/PageHeader";
@@ -27,19 +27,28 @@ function KnowledgePage() {
   const topics = [...new Set(articles.map((a) => a.topic))];
 
   return (
-    <>
+    <div className="min-h-screen bg-[#193324] text-emerald-50 font-sans selection:bg-amber-400 selection:text-emerald-950">
       <PageHeader
         eyebrow="Knowledge centre"
         title="Fabric care advice you can actually use"
         subtitle="How often to clean what, what home washing can and cannot do, and how to keep fabrics healthy in Bengaluru's dust and monsoon."
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
+      <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
         {topics.map((topic) => (
           <section key={topic} className="mb-14 last:mb-0">
-            <h2 className="font-display text-2xl">{topic}</h2>
-            <div className="rule-gold mt-3" />
-            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Topic Header Badge */}
+            <div className="mb-6 flex items-center gap-3 bg-gradient-to-r from-amber-400/20 via-amber-300/30 to-amber-400/20 border-2 border-amber-400/60 px-5 py-3 rounded-xl shadow-md">
+              <div className="p-1.5 rounded-full bg-amber-400/10 border border-amber-400/40 text-amber-400">
+                <Sparkles className="size-4" />
+              </div>
+              <h2 className="font-display text-lg font-extrabold text-amber-300 tracking-wider uppercase">
+                {topic}
+              </h2>
+            </div>
+
+            {/* Grid of Articles */}
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {articles
                 .filter((a) => a.topic === topic)
                 .map((a) => (
@@ -47,13 +56,30 @@ function KnowledgePage() {
                     key={a.slug}
                     to="/knowledge/$slug"
                     params={{ slug: a.slug }}
-                    className="card-elegant flex flex-col p-6 transition-shadow hover:shadow-lg"
+                    className="group relative flex flex-col justify-between rounded-xl border-2 border-amber-400/40 bg-[#04120a] p-6 shadow-xl transition-all duration-200 hover:-translate-y-1 hover:border-amber-400 hover:bg-[#071a0f] hover:shadow-2xl hover:shadow-amber-400/10"
                   >
-                    <h3 className="font-display text-lg text-primary">{a.title}</h3>
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{a.summary}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <Clock className="size-3.5" /> {a.readMinutes} min read
-                    </span>
+                    <div>
+                      <div className="mb-3 flex items-center justify-between">
+                        <div className="size-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                          <BookOpen className="size-4" />
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400/80">
+                          <Clock className="size-3.5" /> {a.readMinutes} min read
+                        </span>
+                      </div>
+
+                      <h3 className="font-display text-lg font-bold text-emerald-100 group-hover:text-amber-300 transition-colors">
+                        {a.title}
+                      </h3>
+
+                      <p className="mt-2 text-xs sm:text-sm text-emerald-300/80 line-clamp-3 leading-relaxed">
+                        {a.summary}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400 group-hover:text-amber-300">
+                      Read guide <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </Link>
                 ))}
             </div>
@@ -66,6 +92,6 @@ function KnowledgePage() {
         subtitle="Send us a photo on WhatsApp and we will tell you honestly whether it needs professional cleaning."
         whatsappMessage="Hi Namma Laundry, I have a fabric care question."
       />
-    </>
+    </div>
   );
 }
