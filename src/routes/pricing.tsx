@@ -6,7 +6,8 @@ import { CtaSection } from "@/components/site/CtaBar";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { priceGroups, priceList, pricingNotes } from "@/data/pricing";
+import { pricingNotes } from "@/data/pricing";
+import { useCatalog } from "@/lib/catalog";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -27,6 +28,7 @@ export const Route = createFileRoute("/pricing")({
 });
 
 function PricingPage() {
+  const { priceGroups, priceList } = useCatalog();
   const [selectedGroup, setSelectedGroup] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
 

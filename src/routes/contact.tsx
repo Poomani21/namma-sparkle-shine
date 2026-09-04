@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { PageHeader } from "@/components/site/PageHeader";
 import { Button } from "@/components/ui/button";
-import { services } from "@/data/services";
+import { useCatalog } from "@/lib/catalog";
 import { site, telLink, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
@@ -27,6 +27,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [name, setName] = useState("");
   const [area, setArea] = useState(site.areas[0] as string);
+  const { services } = useCatalog();
   const [service, setService] = useState(services[0]!.name);
   const [details, setDetails] = useState("");
 

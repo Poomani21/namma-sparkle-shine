@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 
 import { PageHeader } from "@/components/site/PageHeader";
 import { Button } from "@/components/ui/button";
-import { priceGroups, priceList, pricingNotes } from "@/data/pricing";
+import { pricingNotes } from "@/data/pricing";
+import { useCatalog } from "@/lib/catalog";
 import { site, telLink, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/estimate")({
@@ -26,16 +27,17 @@ export const Route = createFileRoute("/estimate")({
 });
 
 function EstimatePage() {
-  const [group, setGroup] = useState<string>(priceGroups[0]);
+  const { priceGroups, priceList } = useCatalog();
+  const [group, setGroup] = useState<string>(priceGroups[0]!);
   const [qty, setQty] = useState<Record<string, number>>({});
 
-  const items = useMemo(() => priceList.filter((i) => i.group === group), [group]);
+  const items = useMemo(() => priceList.filter((i) => i.group === group), [group, priceList]);
   const selected = useMemo(
     () =>
       priceList
         .filter((i) => (qty[i.id] ?? 0) > 0)
         .map((i) => ({ item: i, count: qty[i.id]!, line: i.price * qty[i.id]! })),
-    [qty],
+    [qty, priceList],
   );
   const total = selected.reduce((sum, s) => sum + s.line, 0);
 

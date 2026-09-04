@@ -4,7 +4,8 @@ import { Check, MessageCircle, Phone } from "lucide-react";
 import { CtaSection } from "@/components/site/CtaBar";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Button } from "@/components/ui/button";
-import { getService, services } from "@/data/services";
+import { getService } from "@/data/services";
+import { useCatalog } from "@/lib/catalog";
 import { site, telLink, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -63,7 +64,9 @@ function ServiceNotFound() {
 }
 
 function ServiceDetail() {
-  const { service: s } = Route.useLoaderData();
+  const { service: fallback } = Route.useLoaderData();
+  const { services } = useCatalog();
+  const s = services.find((x) => x.slug === fallback.slug) ?? fallback;
   const related = services.filter((x) => x.category === s.category && x.slug !== s.slug).slice(0, 3);
   const message = `Hi Namma Laundry, I would like a quote for ${s.name}.`;
 
