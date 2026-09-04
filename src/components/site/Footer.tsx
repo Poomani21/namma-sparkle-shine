@@ -6,6 +6,7 @@ import { useCatalog } from "@/lib/catalog";
 import { site, telLink, waLink } from "@/lib/site";
 
 export function Footer() {
+  const { services } = useCatalog();
   return (
     <footer className="surface-green mt-20">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-6">

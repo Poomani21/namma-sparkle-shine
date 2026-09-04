@@ -18,7 +18,8 @@ import { CtaSection } from "@/components/site/CtaBar";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { Button } from "@/components/ui/button";
-import { serviceGroups, services } from "@/data/services";
+import { serviceGroups } from "@/data/services";
+import { useCatalog } from "@/lib/catalog";
 import { site, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/services/")({
