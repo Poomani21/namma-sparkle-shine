@@ -28,7 +28,7 @@ import { ServiceCard } from "@/components/site/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { articles } from "@/data/knowledge";
 import { reviews, reviewStats } from "@/data/reviews";
-import { services } from "@/data/services";
+import { useCatalog } from "@/lib/catalog";
 import { site, telLink, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -94,6 +94,7 @@ const whyChooseUsHighlights = [
 ];
 
 function Index() {
+  const { services } = useCatalog();
   const featured = services.slice(0, 6);
   const topReviews = reviews.slice(0, 3);
   const guides = articles.slice(0, 3);
