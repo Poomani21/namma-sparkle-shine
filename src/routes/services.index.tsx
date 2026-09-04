@@ -81,6 +81,7 @@ const expressOfferings = [
 ];
 
 function ServicesPage() {
+  const { services } = useCatalog();
   return (
     <>
       <PageHeader
