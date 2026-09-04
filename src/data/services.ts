@@ -26,7 +26,7 @@ export type Service = ServiceDef & {
   imageAlt: string;
 };
 
-type ServiceDef = {
+export type ServiceDef = {
   slug: string;
   name: string;
   short: string;
@@ -40,7 +40,7 @@ type ServiceDef = {
   category: "garment" | "home" | "everyday" | "specialist";
 };
 
-const serviceDefs: ServiceDef[] = [
+export const serviceDefs: ServiceDef[] = [
   {
     slug: "dry-cleaning",
     name: "Dry Cleaning",
@@ -391,7 +391,7 @@ const serviceDefs: ServiceDef[] = [
   },
 ];
 
-const serviceMedia: Record<string, { image: string; alt: string }> = {
+export const serviceMedia: Record<string, { image: string; alt: string }> = {
   "dry-cleaning": { image: dryCleaningImg, alt: "Crisp dry-cleaned white shirt on a hanger" },
   sarees: { image: sareeImg, alt: "Silk saree with a gold zari border after cleaning and roll polish" },
   blankets: { image: blanketImg, alt: "Freshly washed blankets folded in a neat stack" },
@@ -406,9 +406,13 @@ const serviceMedia: Record<string, { image: string; alt: string }> = {
   "stain-removal": { image: stainImg, alt: "Stain being treated by hand on white fabric" },
 };
 
+export function getServiceMedia(slug: string, name: string) {
+  return serviceMedia[slug] ?? { image: dryCleaningImg, alt: `${name} service at Namma Laundry` };
+}
+
 export const services: Service[] = serviceDefs.map((def) => {
   const price = getPrice(def.priceId);
-  const media = serviceMedia[def.slug]!;
+  const media = getServiceMedia(def.slug, def.name);
   return {
     ...def,
     fromPrice: price.price,
